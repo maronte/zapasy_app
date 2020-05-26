@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:id="@+id/coordinatorMainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.tabs.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primaryColor"
+            android:id="@+id/tabLayout"
+            app:tabTextColor="@color/primaryTextColor" >
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/home"
+                android:id="@+id/tabInicio"
+                android:icon="@drawable/ic_home_smile" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/products"
+                android:id="@+id/tabProductos"
+                android:icon="@drawable/ic_producto" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/categories"
+                android:id="@+id/tabCategorias"
+                android:icon="@drawable/ic_categoria" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/viewPager">
+
+        </androidx.viewpager.widget.ViewPager>
+
+    </LinearLayout>
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/floatingmenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        app:fab_addButtonColorNormal="@color/secondaryColor"
+        android:layout_margin="10dp"
+        app:fab_labelStyle="@style/etiqueta"
+        app:fab_addButtonColorPressed="@color/secondaryDarkColor">
+        
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_add_product"
+            app:fab_icon="@drawable/ic_producto"
+            app:fab_size="mini"
+            app:fab_colorNormal="@color/secondaryLightColor"
+            app:fab_title="@string/opcion1"
+            app:fab_colorPressed="@color/secondaryDarkColor"
+            />
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_add_categorie"
+            app:fab_icon="@drawable/ic_categoria"
+            app:fab_size="mini"
+            app:fab_colorNormal="@color/secondaryLightColor"
+            app:fab_title="@string/opcion2"
+            app:fab_colorPressed="@color/secondaryDarkColor"
+            />
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_add_group"
+            app:fab_icon="@drawable/ic_grupo"
+            app:fab_size="mini"
+            app:fab_colorNormal="@color/secondaryLightColor"
+            app:fab_title="@string/opcion3"
+            app:fab_colorPressed="@color/secondaryDarkColor"
+            />
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

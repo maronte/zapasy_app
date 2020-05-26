@@ -1,0 +1,60 @@
+<resources>
+
+    <!--MainActivity-->
+    <string name="app_name">Zapasy</string>
+    <string name="home">Inicio</string>
+    <string name="products">Productos</string>
+    <string name="categories">Categorías</string>
+    <string name="groups">Grupos</string>
+    <string name="inicio_button_1">Inventariar</string>
+    <!--CardProduct-->
+    <string name="texto1_card_products">Nombre del producto</string>
+    <string name="texto2_card_products">Hay X productos en existencia</string>
+    <!--CardCategoria-->
+    <string name="texto1_card_categories">Nombre de la categoria</string>
+    <!-- Menú flotante -->
+    <string name="opcion1">Agregar producto</string>
+    <string name="opcion2">Agregar categoria</string>
+    <string name="opcion3">Agregar grupo</string>
+
+    <!-- Formularios -->
+
+    <string name="product">Producto</string>
+    <string name="price">Precio</string>
+    <string name="barcode">Código de barras</string>
+    <string name="Existing">Existencia</string>
+    <string name="lost">Perdido</string>
+    <string name="damaged">Dañado</string>
+    <string name="sold">Vendido</string>
+    <string name="buttomadd">Añadir</string>
+    <string name="buttomdelete">Eliminar</string>
+    <string name="imageproduct">Imagen del producto</string>
+    <string name="productname">Nombre del producto</string>
+    <string name="productprice">Precio del producto</string>
+    <string name="productbarcode">XXXXXXXXXXXXXXX</string>
+    <string name="soldquantity">Ventas en unidades</string>
+    <string name="soldmoney">Ventas en dinero</string>
+    <string name="existingquantity">    Existencia en unidades</string>
+    <string name="existingmoney">Existencia en dinero</string>
+    <string name="lostquantity">    Perdidos en unidades</string>
+    <string name="lostmoney">Perdidos en dinero</string>
+    <string name="damagedquantity">    Dañados en unidades</string>
+    <string name="damagedmoney">Dañados en dinero</string>
+    <string name="buttombarcode">Capturar código</string>
+    <string name="categorie">Categoría</string>
+    <string name="categoriename">Nombre de la categoría</string>
+    <string name="categoriexproduct">Productos que contiene</string>
+    <string name="categoriexgroup">Grupos a los que pertenece</string>
+    <string name="group">Grupo</string>
+    <string name="groupname">Nombre del grupo</string>
+    <string name="groupxcategorie">Categorías que contiene</string>
+
+    <!-- Dialogs -->
+    <string name="question">¿Pregunta de conformación?</string>
+    <string name="confirm">Aceptar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="list">Lista de elementos</string>
+
+    <string name="action_search">Buscar</string>
+
+</resources>

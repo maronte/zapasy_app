@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.example.Zapasy.CrearProductoActivity"
+    tools:layout_marginTop="0dp"
+    android:id="@+id/rootActivityCrearProducto"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgproduct"
+                android:layout_width="380dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:background="#E6E6E6"
+                android:contentDescription="@string/imageproduct"/>
+
+            <TextView
+                style="@style/labelFormStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/product" />
+
+            <EditText
+                android:id="@+id/productnameinput"
+                style="@style/editTextFormStyle"
+                android:layout_width="340dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/productname"
+                android:autofillHints="@string/productname"
+                android:inputType="text"/>
+
+            <TextView
+                style="@style/labelFormStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/price" />
+
+            <EditText
+                android:id="@+id/priceproductinput"
+                style="@style/editTextFormStyle"
+                android:layout_width="340dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/productprice"
+                android:autofillHints="@string/productprice"
+                android:inputType="numberDecimal"/>
+
+            <TextView
+                style="@style/labelFormStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/barcode" />
+
+            <EditText
+                android:id="@+id/barcodeinput"
+                style="@style/editTextFormStyle"
+                android:layout_width="340dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/productbarcode"
+                android:autofillHints="@string/productbarcode"
+                android:inputType="number"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/backgroud_button_rounded"
+                android:backgroundTint="@color/primaryLightColor"
+                android:text="@string/buttombarcode"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:textColor="@color/primaryTextColor"
+                android:id="@+id/btncapturarcodigo"
+                />
+
+            <TextView
+                style="@style/labelFormStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Existing" />
+
+            <EditText
+                android:id="@+id/existinginput"
+                style="@style/editTextFormStyle"
+                android:layout_width="340dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/existingquantity"
+                android:autofillHints="@string/existingquantity"
+                android:inputType="number" />
+
+            <TextView
+                style="@style/labelFormStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sold" />
+
+            <EditText
+                android:id="@+id/soldinput"
+                style="@style/editTextFormStyle"
+                android:layout_width="340dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/soldquantity"
+                android:autofillHints="@string/soldquantity"
+                android:inputType="number" />
+
+            <TextView
+                style="@style/labelFormStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lost" />
+
+            <EditText
+                android:id="@+id/lostinput"
+                style="@style/editTextFormStyle"
+                android:layout_width="340dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/lostquantity"
+                android:autofillHints="@string/lostquantity"
+                android:inputType="number" />
+
+            <TextView
+                style="@style/labelFormStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/damaged" />
+
+            <EditText
+                android:id="@+id/damagedinput"
+                style="@style/editTextFormStyle"
+                android:layout_width="340dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/damagedquantity"
+                android:autofillHints="@string/damagedquantity"
+                android:inputType="number" />
+
+            <TextView
+                style="@style/labelFormStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/categories" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp" />
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                >
+                <FrameLayout
+                    android:layout_weight="0.5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/buttomadd"
+                    android:layout_gravity="center"
+                    android:background="@drawable/backgroud_button_rounded"
+                    android:backgroundTint="@color/primaryLightColor"
+                    android:layout_weight="0.5"
+                    android:layout_marginEnd="5dp"
+                    android:textColor="@color/primaryTextColor"
+                    android:id="@+id/añadircategoriap"
+                    />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:text="@string/buttomdelete"
+                    android:layout_gravity="center"
+                    android:background="@drawable/backgroud_button_rounded"
+                    android:id="@+id/eliminarcategoriap"
+                    android:textColor="@color/primaryTextColor"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
