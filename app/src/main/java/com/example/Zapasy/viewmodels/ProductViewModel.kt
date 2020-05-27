@@ -14,4 +14,8 @@ class ProductViewModel(application: Application): AndroidViewModel(application) 
         repository.insert(product)
     }
 
+    fun deleteProduct(product: Product){
+        repository.delete(product)
+    }
+
 }
