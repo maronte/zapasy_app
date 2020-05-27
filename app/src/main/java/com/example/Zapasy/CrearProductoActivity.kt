@@ -73,7 +73,7 @@ class CrearProductoActivity : AppCompatActivity(), ConfirmListener {
         lostProduct = findViewById(R.id.lostinput)
     }
 
-    // TODO: Corregir el mapeo de los productos
+
     fun mapingToModel(): Product {
         var product = Product()
         product.name = nameProduct.text.toString()
