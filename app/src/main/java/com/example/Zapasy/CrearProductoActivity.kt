@@ -7,9 +7,11 @@ import android.view.MenuItem
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
-import com.example.Zapasy.database.Product
+import androidx.lifecycle.ViewModelProviders
+import com.example.Zapasy.room.Product
 import com.example.Zapasy.dialogs.ConfirmDialog
 import com.example.Zapasy.interfaces.ConfirmListener
+import com.example.Zapasy.viewmodels.ProductViewModel
 import com.google.android.material.snackbar.Snackbar
 
 class CrearProductoActivity : AppCompatActivity(), ConfirmListener {
@@ -22,13 +24,16 @@ class CrearProductoActivity : AppCompatActivity(), ConfirmListener {
     private lateinit var soldProduct: EditText
     private lateinit var damagedProduct: EditText
     private lateinit var lostProduct: EditText
+    private lateinit var productsViewModel: ProductViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_crear_producto)
         enableBackButton()
         inicializeVariables()
-
+        productsViewModel = kotlin.run {
+            ViewModelProviders.of(this).get(ProductViewModel::class.java)
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -42,10 +47,6 @@ class CrearProductoActivity : AppCompatActivity(), ConfirmListener {
         actionBar.title = "Registrar producto"
     }
 
-    override fun onDestroy() {
-        Toast.makeText(this,"memueroxd",Toast.LENGTH_SHORT).show()
-        super.onDestroy()
-    }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.save_menu, menu)
         return true
@@ -72,19 +73,16 @@ class CrearProductoActivity : AppCompatActivity(), ConfirmListener {
         lostProduct = findViewById(R.id.lostinput)
     }
 
+    // TODO: Corregir el mapeo de los productos
     fun mapingToModel(): Product {
-        var product : Product = Product()
-        product.name = priceProduct.text.toString()
+        var product = Product()
+        product.name = nameProduct.text.toString()
+        product.price = priceProduct.text.toString().toDouble()
         product.barcode = barcodeProduct.text.toString()
-        if( !soldProduct.text.toString().equals("")
-            and !damagedProduct.text.toString().equals("")
-            and !lostProduct.text.toString().equals("")
-            and !existingProduct.text.toString().equals("") ){
-            product.existing = existingProduct.text.toString().toInt()
-            product.sold = soldProduct.text.toString().toInt()
-            product.damaged = damagedProduct.text.toString().toInt()
-            product.lost = lostProduct.text.toString().toInt()
-        }
+        if (!existingProduct.text.toString().equals("")) product.existing = existingProduct.text.toString().toInt()
+        if( !soldProduct.text.toString().equals("") ) product.sold = soldProduct.text.toString().toInt()
+        if (!lostProduct.text.toString().equals("")) product.lost = lostProduct.text.toString().toInt()
+        if (!damagedProduct.text.toString().equals("")) product.damaged = damagedProduct.text.toString().toInt()
         return product
     }
 
@@ -98,6 +96,7 @@ class CrearProductoActivity : AppCompatActivity(), ConfirmListener {
 
         }else{
             val productToRegist = mapingToModel()
+            productsViewModel.saveProduct(productToRegist)
             Snackbar.make(coordinatorLayout,"Se creó el producto con éxito",
                 Snackbar.LENGTH_LONG).show()
         }

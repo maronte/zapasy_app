@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.Zapasy.R
-import com.example.Zapasy.database.Product
+import com.example.Zapasy.room.Product
 
-class AdapterProductCard(val context: Context, val productos:MutableList<Product>)
+class AdapterProductCard(val context: Context, val productos:List<Product>)
     :RecyclerView.Adapter<AdapterProductCard.ViewHolder>() {
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
