@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context="com.example.Zapasy.DetalleProductoActivity"
-    tools:layout_marginTop="-500dp">
+    tools:layout_marginTop="-500dp"
+    android:id="@+id/linearLayoutDetalleProducto">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -87,7 +88,7 @@
                 android:text="@string/Existing" />
 
             <EditText
-                android:id="@+id/existingmoneyinput"
+                android:id="@+id/existingquantityinput"
                 style="@style/editTextFormStyle"
                 android:layout_width="340dp"
                 android:layout_height="wrap_content"
@@ -96,7 +97,7 @@
                 android:inputType="number" />
 
             <TextView
-                android:id="@+id/existingquantityinput"
+                android:id="@+id/existingmoney"
                 style="@style/editTextFormStyle"
                 android:layout_width="340dp"
                 android:layout_height="wrap_content"
@@ -109,7 +110,7 @@
                 android:text="@string/sold" />
 
             <EditText
-                android:id="@+id/soldmoneyinput"
+                android:id="@+id/soldquantityinput"
                 style="@style/editTextFormStyle"
                 android:layout_width="340dp"
                 android:layout_height="wrap_content"
@@ -118,7 +119,7 @@
                 android:inputType="number" />
 
             <TextView
-                android:id="@+id/soldquantityinput"
+                android:id="@+id/soldmoney"
                 style="@style/editTextFormStyle"
                 android:layout_width="340dp"
                 android:layout_height="wrap_content"
@@ -131,7 +132,7 @@
                 android:text="@string/lost" />
 
             <EditText
-                android:id="@+id/lostmoneyinput"
+                android:id="@+id/lostquantityinput"
                 style="@style/editTextFormStyle"
                 android:layout_width="340dp"
                 android:layout_height="wrap_content"
@@ -140,7 +141,7 @@
                 android:inputType="number" />
 
             <TextView
-                android:id="@+id/lostquantityinput"
+                android:id="@+id/lostmoney"
                 style="@style/editTextFormStyle"
                 android:layout_width="340dp"
                 android:layout_height="wrap_content"
@@ -153,7 +154,7 @@
                 android:text="@string/damaged" />
 
             <EditText
-                android:id="@+id/damagedmoneyinput"
+                android:id="@+id/damagedquantityinput"
                 style="@style/editTextFormStyle"
                 android:layout_width="340dp"
                 android:layout_height="wrap_content"
@@ -162,7 +163,7 @@
                 android:inputType="number" />
 
             <TextView
-                android:id="@+id/damagedquantityinput"
+                android:id="@+id/damagedmoney"
                 style="@style/editTextFormStyle"
                 android:layout_width="340dp"
                 android:layout_height="wrap_content"
@@ -172,13 +173,15 @@
                 style="@style/labelFormStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/categories" />
+                android:text="@string/marca" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp" />
+            <TextView
+                android:id="@+id/marca_productdetail"
+                style="@style/editTextFormStyle"
+                android:layout_width="340dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="@string/marca" />
 
             <LinearLayout
                 android:layout_marginTop="10dp"
@@ -195,7 +198,7 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/buttomadd"
+                    android:text="@string/edit"
                     android:layout_gravity="center"
                     android:background="@drawable/backgroud_button_rounded"
                     android:backgroundTint="@color/primaryLightColor"

@@ -10,9 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".SearchActivity"></activity>
-        <activity android:name=".DetalleCategoriaActivity" />
-        <activity android:name=".DetalleGrupoActivity" />
-        <activity android:name=".CrearEditarGrupoActivity" />
+        <activity android:name=".CrearEditarMarcaActivity" />
         <activity android:name=".CrearEditarCategoriaActivity" />
         <activity android:name=".DetalleProductoActivity" />
         <activity android:name=".CrearProductoActivity" />

@@ -38,9 +38,9 @@
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/categories"
+                android:text="@string/grupos"
                 android:id="@+id/tabCategorias"
-                android:icon="@drawable/ic_categoria" />
+                android:icon="@drawable/ic_grupo" />
 
         </com.google.android.material.tabs.TabLayout>
 
@@ -77,7 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button_add_categorie"
-            app:fab_icon="@drawable/ic_categoria"
+            app:fab_icon="@drawable/ic_marca"
             app:fab_size="mini"
             app:fab_colorNormal="@color/secondaryLightColor"
             app:fab_title="@string/opcion2"
@@ -87,7 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button_add_group"
-            app:fab_icon="@drawable/ic_grupo"
+            app:fab_icon="@drawable/ic_categoria"
             app:fab_size="mini"
             app:fab_colorNormal="@color/secondaryLightColor"
             app:fab_title="@string/opcion3"

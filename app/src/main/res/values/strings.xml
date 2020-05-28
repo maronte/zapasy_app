@@ -14,8 +14,8 @@
     <string name="texto1_card_categories">Nombre de la categoria</string>
     <!-- Menú flotante -->
     <string name="opcion1">Agregar producto</string>
-    <string name="opcion2">Agregar categoria</string>
-    <string name="opcion3">Agregar grupo</string>
+    <string name="opcion2">Agregar marca</string>
+    <string name="opcion3">Agregar categoría</string>
 
     <!-- Formularios -->
 
@@ -42,6 +42,9 @@
     <string name="damagedmoney">Dañados en dinero</string>
     <string name="buttombarcode">Capturar código</string>
     <string name="categorie">Categoría</string>
+    <string name="marca">Marca</string>
+    <string name="edit">Editar</string>
+    <string name="grupos">Grupos</string>
     <string name="categoriename">Nombre de la categoría</string>
     <string name="categoriexproduct">Productos que contiene</string>
     <string name="categoriexgroup">Grupos a los que pertenece</string>

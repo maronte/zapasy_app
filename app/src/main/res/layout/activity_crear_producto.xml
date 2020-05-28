@@ -148,13 +148,15 @@
                 style="@style/labelFormStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/categories" />
+                android:text="@string/marca" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp" />
+            <TextView
+                android:id="@+id/marca_product"
+                style="@style/editTextFormStyle"
+                android:layout_width="340dp"
+                android:layout_height="wrap_content"
+                android:text="@string/marca"
+                android:textAlignment="center"/>
 
             <LinearLayout
                 android:layout_marginTop="10dp"

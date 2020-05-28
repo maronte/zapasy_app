@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.viewpager.widget.ViewPager
 import com.example.Zapasy.adapters.ViewPagerAdapter
+import com.example.Zapasy.dialogs.CreateDialog
 import com.example.Zapasy.fragments.Categorias
 import com.example.Zapasy.fragments.Inicio
 import com.example.Zapasy.fragments.Productos
@@ -17,8 +18,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewPager: ViewPager
     private lateinit var tabs : TabLayout
     private lateinit var buttonAddProduct: FloatingActionButton
+    private lateinit var buttonAddMarca: FloatingActionButton
     private lateinit var buttonAddCategorie: FloatingActionButton
-    private lateinit var buttonAddGroup: FloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
@@ -56,24 +57,28 @@ class MainActivity : AppCompatActivity() {
     }
     fun funcionalityFloatingMenu(){
         buttonAddProduct = findViewById(R.id.button_add_product)
-        buttonAddCategorie = findViewById(R.id.button_add_categorie)
-        buttonAddGroup = findViewById(R.id.button_add_group)
+        buttonAddMarca = findViewById(R.id.button_add_categorie)
+        buttonAddCategorie = findViewById(R.id.button_add_group)
         buttonAddProduct.setOnClickListener{
             val intent = Intent(this,CrearProductoActivity::class.java)
             startActivity(intent)
             Toast.makeText(this,"Vas a crear un producto",Toast.LENGTH_SHORT).show()
         }
-        buttonAddCategorie.setOnClickListener{
-            val intent = Intent(this,CrearEditarCategoriaActivity::class.java)
-            intent.putExtra("Accion",1)
-            startActivity(intent)
-            Toast.makeText(this,"Vas a crear una categoría",Toast.LENGTH_SHORT).show()
+        buttonAddMarca.setOnClickListener{
+            //val intent = Intent(this,CrearEditarMarcaActivity::class.java)
+            //intent.putExtra("Accion",1)
+            //startActivity(intent)
+            //Toast.makeText(this,"Vas a crear una categoría",Toast.LENGTH_SHORT).show()
+            val dialog = CreateDialog("Ingresa el nombre de la marca")
+            dialog.show(supportFragmentManager,null)
         }
-        buttonAddGroup.setOnClickListener{
-            val intent = Intent(this,CrearEditarGrupoActivity::class.java)
-            intent.putExtra("Accion",1)
-            startActivity(intent)
-            Toast.makeText(this,"Vas a crear un grupo",Toast.LENGTH_SHORT).show()
+        buttonAddCategorie.setOnClickListener{
+            //val intent = Intent(this,CrearEditarCategoriaActivity::class.java)
+            //intent.putExtra("Accion",1)
+            //startActivity(intent)
+            //Toast.makeText(this,"Vas a crear una categoría",Toast.LENGTH_SHORT).show()
+            val dialog = CreateDialog("Ingresa el nombre de la categoría")
+            dialog.show(supportFragmentManager,null)
         }
     }
 }

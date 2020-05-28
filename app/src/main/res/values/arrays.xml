@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="spinnerCategires">
+        <item>Marcas</item>
         <item>Categorías</item>
-        <item>Grupos</item>
     </array>
     <array name="spinnerSearch">
         <item>Productos</item>
+        <item>Marcas</item>
         <item>Categorías</item>
-        <item>Grupos</item>
     </array>
 </resources>

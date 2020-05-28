@@ -8,7 +8,7 @@ import android.widget.Toast
 import com.example.Zapasy.dialogs.ConfirmDialog
 import com.example.Zapasy.interfaces.ConfirmListener
 
-class CrearEditarGrupoActivity : AppCompatActivity(), ConfirmListener {
+class CrearEditarMarcaActivity : AppCompatActivity(), ConfirmListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

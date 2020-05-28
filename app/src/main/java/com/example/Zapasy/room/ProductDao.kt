@@ -6,7 +6,7 @@ import androidx.room.*
 @Dao
 interface ProductDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(product: Product)
 
     @Update
@@ -17,5 +17,11 @@ interface ProductDao {
 
     @Query("SELECT * FROM product" )
     fun getAll(): LiveData<List<Product>>
+
+    @Query ("SELECT * FROM Product WHERE id = :id")
+    fun getOne(id: Int): LiveData<List<Product>>
+
+    @Query ("UPDATE product SET existing = :existing WHERE id = :id")
+    fun updateExisting(id: Int, existing: Int)
 
 }

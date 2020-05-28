@@ -1,6 +1,7 @@
 package com.example.Zapasy.fragments
 
 import android.app.Application
+import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,17 +13,21 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.Zapasy.DetalleProductoActivity
 import com.example.Zapasy.R
 import com.example.Zapasy.adapters.AdapterProductCard
+import com.example.Zapasy.dialogs.ConfirmDialog
+import com.example.Zapasy.interfaces.ConfirmListener
 import com.example.Zapasy.interfaces.ProductCardListener
 import com.example.Zapasy.room.Product
 import com.example.Zapasy.viewmodels.ProductViewModel
 
 
-class Productos : Fragment(), ProductCardListener {
+class Productos : Fragment(), ProductCardListener,  ConfirmListener{
 
     lateinit var productosReycler: RecyclerView
     private lateinit var productsViewModel: ProductViewModel
+    private var productoABorrar = Product()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,11 +53,22 @@ class Productos : Fragment(), ProductCardListener {
     }
 
     override fun onClickDeleteButton(product: Product) {
-        Toast.makeText(context,"Se va a morir xd", Toast.LENGTH_LONG).show()
-        productsViewModel.deleteProduct(product)
+        val dialog = ConfirmDialog("¿Seguro que quieres borrar el producto?",
+            "Borrar","Cancelar",this)
+        dialog.show(fragmentManager!!,null)
+        productoABorrar = product
     }
 
     override fun onClickCard(product: Product) {
-        Toast.makeText(context,"Se va a abrir xd", Toast.LENGTH_LONG).show()
+        val intent = Intent(context,DetalleProductoActivity::class.java)
+        intent.putExtra("idProduct", product.id)
+        startActivity(intent)
     }
+
+    override fun onPositiveAction() {
+        if( !productoABorrar.name.equals("") ) productsViewModel.deleteProduct(productoABorrar)
+        productoABorrar.name = ""
+    }
+
+
 }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/createDialog"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:textSize="20sp"
+        android:textColor="@color/textSemiBlack"
+        android:text="@string/question"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:id="@+id/dialog_title"
+        android:layout_marginBottom="15dp"
+        />
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        style="@style/editTextFormStyle"
+        android:id="@+id/nombreitem"
+        android:autofillHints="@string/marca"
+        android:hint="@string/marca"
+        android:textSize="20sp"/>
+
+</LinearLayout>
