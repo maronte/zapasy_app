@@ -4,16 +4,16 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
-//import com.example.Zapasy.Models.Marca
+import com.example.Zapasy.Models.Marca
 
 @Entity(
-    indices = [ Index(value = ["barcode"], unique = true) ]/*,
+    indices = [ Index(value = ["barcode"], unique = true), Index(value = ["idMarca"]) ],
     foreignKeys = [
         ForeignKey(
             entity = Marca::class,
             parentColumns = ["id"],
             childColumns = ["idMarca"])
-    ]*/
+    ]
 )
 data class Product (
 

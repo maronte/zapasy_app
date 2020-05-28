@@ -45,6 +45,7 @@
     <string name="marca">Marca</string>
     <string name="edit">Editar</string>
     <string name="grupos">Grupos</string>
+    <string name="nombre">Nombre</string>
     <string name="categoriename">Nombre de la categoría</string>
     <string name="categoriexproduct">Productos que contiene</string>
     <string name="categoriexgroup">Grupos a los que pertenece</string>

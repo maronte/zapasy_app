@@ -1,12 +1,10 @@
 package com.example.Zapasy.room
 
-/*import androidx.lifecycle.LiveData
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.lifecycle.LiveData
+import androidx.room.*
 import com.example.Zapasy.Models.Marca
 
+@Dao
 interface MarcaDao {
 
     @Insert
@@ -18,6 +16,6 @@ interface MarcaDao {
     @Delete
     fun delete(marca: Marca)
 
-    @Query("SELECT * FROM product" )
+    @Query("SELECT * FROM marca" )
     fun getAll(): LiveData<List<Marca>>
-}*/
+}
