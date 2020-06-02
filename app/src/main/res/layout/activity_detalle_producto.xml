@@ -71,12 +71,14 @@
                 android:inputType="number"/>
 
             <Button
+                android:id="@+id/btncapturarCodigo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/backgroud_button_rounded"
                 android:backgroundTint="@color/primaryLightColor"
                 android:text="@string/buttombarcode"
+                android:textColor="@color/primaryTextColor"
                 android:layout_gravity="center"
                 android:padding="10dp"
                 />

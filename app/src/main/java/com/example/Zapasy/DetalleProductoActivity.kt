@@ -1,11 +1,17 @@
 package com.example.Zapasy
 
+import android.Manifest
+import android.app.Activity
+import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.*
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.example.Zapasy.Models.Marca
 import com.example.Zapasy.dialogs.ConfirmDialog
 import com.example.Zapasy.dialogs.ListaMarcasDialog
@@ -17,6 +23,12 @@ import com.example.Zapasy.room.ProductRepository
 
 class DetalleProductoActivity : AppCompatActivity(), ConfirmListener, ListaMarcaListener {
 
+
+    private val CAMERA_REQUEST_CODE = 0
+    private val CODIGO_INTENTO = 1
+    private var permisoCamaraConcedido = false
+    private  var permisoSolicitadoDesdeBoton: Boolean = false
+    private lateinit var btnCapturar: Button
     private lateinit var coordinatorLayout: LinearLayout
     private lateinit var nameProduct: EditText
     private lateinit var priceProduct: EditText
@@ -124,6 +136,15 @@ class DetalleProductoActivity : AppCompatActivity(), ConfirmListener, ListaMarca
     }
 
     fun inicializeElements(){
+        btnCapturar = findViewById(R.id.btncapturarCodigo)
+        btnCapturar.setOnClickListener {
+            if (!permisoCamaraConcedido) {
+                Toast.makeText(this, "Por favor permite que la app acceda a la cámara", Toast.LENGTH_SHORT).show()
+                permisoSolicitadoDesdeBoton = true
+                verificarYPedirPermisosDeCamara()
+            }
+            escanear()
+        }
         coordinatorLayout  = findViewById(R.id.linearLayoutDetalleProducto)
         nameProduct = findViewById(R.id.productnameinput)
         priceProduct = findViewById(R.id.priceproductinput)
@@ -149,6 +170,60 @@ class DetalleProductoActivity : AppCompatActivity(), ConfirmListener, ListaMarca
         if (marcasList != null){
             marcaProducto.text = marcasList[marca].nombre
             productoVisualizado.idMarca = marcasList[marca].id
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode === CODIGO_INTENTO) {
+            if (resultCode === Activity.RESULT_OK) {
+                if (data?.getStringExtra("codigo")!= null) {
+                    barcodeProduct.text = data.getStringExtra("codigo").toEditable()
+                }
+            }
+        }
+    }
+
+    private fun verificarYPedirPermisosDeCamara() {
+        val estadoDePermiso =
+            ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+        if (estadoDePermiso == PackageManager.PERMISSION_GRANTED) {
+            // En caso de que haya dado permisos ponemos la bandera en true
+            // y llamar al método
+            permisoCamaraConcedido = true
+        } else {
+            // Si no, pedimos permisos. Ahora mira onRequestPermissionsResult
+            ActivityCompat.requestPermissions(
+                this, arrayOf(Manifest.permission.CAMERA),
+                CAMERA_REQUEST_CODE
+            )
+        }
+    }
+
+    fun escanear(){
+        val intent = Intent(this, CapturarCodigoActivity::class.java)
+        startActivityForResult(intent,CODIGO_INTENTO)
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>, grantResults: IntArray
+    ) {
+        when (requestCode) {
+            CAMERA_REQUEST_CODE -> {
+                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    if(permisoSolicitadoDesdeBoton){
+                        permisoCamaraConcedido = true
+                        escanear()
+                    }
+                } else {
+                    Toast.makeText(this,"No puedes escanear sin otorgar permisos",Toast.LENGTH_LONG).show()
+                }
+                return
+            }
+            else -> {
+                // Este else lo dejamos por si sale un permiso que no teníamos controlado.
+            }
         }
     }
 

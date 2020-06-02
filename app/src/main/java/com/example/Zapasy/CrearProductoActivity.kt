@@ -1,24 +1,38 @@
 package com.example.Zapasy
 
-import androidx.appcompat.app.AppCompatActivity
+import android.Manifest
+import android.R.attr
+import android.app.Activity
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.text.Editable
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.example.Zapasy.Models.Marca
-import com.example.Zapasy.room.Product
 import com.example.Zapasy.dialogs.ConfirmDialog
 import com.example.Zapasy.dialogs.ListaMarcasDialog
 import com.example.Zapasy.interfaces.ConfirmListener
 import com.example.Zapasy.interfaces.ListaMarcaListener
 import com.example.Zapasy.room.MarcaRepository
+import com.example.Zapasy.room.Product
 import com.example.Zapasy.room.ProductRepository
 import com.google.android.material.snackbar.Snackbar
 
+
 class CrearProductoActivity : AppCompatActivity(), ConfirmListener, ListaMarcaListener {
 
+    private val CAMERA_REQUEST_CODE = 0
+    private val CODIGO_INTENTO = 1
+    private var permisoCamaraConcedido = false
+    private  var permisoSolicitadoDesdeBoton: Boolean = false
     private lateinit var coordinatorLayout: LinearLayout
     private lateinit var nameProduct: EditText
+    private lateinit var escanear: Button
     private lateinit var priceProduct: EditText
     private lateinit var barcodeProduct: EditText
     private lateinit var existingProduct: EditText
@@ -69,6 +83,15 @@ class CrearProductoActivity : AppCompatActivity(), ConfirmListener, ListaMarcaLi
 
     fun inicializeVariables(){
         coordinatorLayout = findViewById(R.id.rootActivityCrearProducto)
+        escanear = findViewById(R.id.btncapturarcodigo)
+        escanear.setOnClickListener {
+            if (!permisoCamaraConcedido) {
+                Toast.makeText(this, "Por favor permite que la app acceda a la cámara", Toast.LENGTH_SHORT).show()
+                permisoSolicitadoDesdeBoton = true
+                verificarYPedirPermisosDeCamara()
+            }
+            escanear()
+        }
         nameProduct = findViewById(R.id.productnameinput)
         priceProduct = findViewById(R.id.priceproductinput)
         barcodeProduct = findViewById(R.id.barcodeinput)
@@ -119,4 +142,61 @@ class CrearProductoActivity : AppCompatActivity(), ConfirmListener, ListaMarcaLi
             productToRegist.idMarca = marcasList[marca].id
         }
     }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>, grantResults: IntArray
+    ) {
+        when (requestCode) {
+            CAMERA_REQUEST_CODE -> {
+                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                     if(permisoSolicitadoDesdeBoton){
+                         permisoCamaraConcedido = true
+                         escanear()
+                     }
+                } else {
+                    Toast.makeText(this,"No puedes escanear sin otorgar permisos",Toast.LENGTH_LONG).show()
+                }
+                return
+            }
+            else -> {
+                // Este else lo dejamos por si sale un permiso que no teníamos controlado.
+            }
+        }
+    }
+
+    fun escanear(){
+        val intent = Intent(this, CapturarCodigoActivity::class.java)
+        startActivityForResult(intent,CODIGO_INTENTO)
+    }
+
+    private fun verificarYPedirPermisosDeCamara() {
+        val estadoDePermiso =
+            ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+        if (estadoDePermiso == PackageManager.PERMISSION_GRANTED) {
+            // En caso de que haya dado permisos ponemos la bandera en true
+            // y llamar al método
+            permisoCamaraConcedido = true
+        } else {
+            // Si no, pedimos permisos. Ahora mira onRequestPermissionsResult
+            ActivityCompat.requestPermissions(
+                this, arrayOf(Manifest.permission.CAMERA),
+                CAMERA_REQUEST_CODE
+            )
+        }
+    }
+
+    fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode === CODIGO_INTENTO) {
+            if (resultCode === Activity.RESULT_OK) {
+                if (data?.getStringExtra("codigo")!= null) {
+                    barcodeProduct.text = data.getStringExtra("codigo").toEditable()
+                }
+            }
+        }
+    }
+
 }

@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
-import com.example.Zapasy.HacerInventarioActivity
+import com.example.Zapasy.EscanearActivity
 
 import com.example.Zapasy.R
 
@@ -50,7 +50,7 @@ class Inicio : Fragment() {
 
     fun loadbuttonInventariar(){
         buttonInventariar.setOnClickListener{
-            val intent = Intent(this.context, HacerInventarioActivity::class.java)
+            val intent = Intent(this.context, EscanearActivity::class.java)
             startActivity(intent)
             Toast.makeText(this.context,"Inicando inventario", Toast.LENGTH_SHORT).show()
         }
