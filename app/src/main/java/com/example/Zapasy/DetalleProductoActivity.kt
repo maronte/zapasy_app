@@ -4,27 +4,29 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.Zapasy.Models.Marca
+import com.example.Zapasy.Models.Product
 import com.example.Zapasy.dialogs.ConfirmDialog
 import com.example.Zapasy.dialogs.ListaMarcasDialog
 import com.example.Zapasy.interfaces.ConfirmListener
 import com.example.Zapasy.interfaces.ListaMarcaListener
 import com.example.Zapasy.room.MarcaRepository
-import com.example.Zapasy.Models.Product
 import com.example.Zapasy.room.ProductRepository
+
 
 class DetalleProductoActivity : AppCompatActivity(), ConfirmListener, ListaMarcaListener {
 
 
     private val CAMERA_REQUEST_CODE = 0
+    private val PICK_IMAGE = 100;
     private val CODIGO_INTENTO = 1
     private var permisoCamaraConcedido = false
     private  var permisoSolicitadoDesdeBoton: Boolean = false
@@ -45,6 +47,7 @@ class DetalleProductoActivity : AppCompatActivity(), ConfirmListener, ListaMarca
     private lateinit var marcaProducto: TextView
     private lateinit var editarMarcaBoton: Button
     private lateinit var marcasList: List<Marca>
+    private lateinit var imgProducto : ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
