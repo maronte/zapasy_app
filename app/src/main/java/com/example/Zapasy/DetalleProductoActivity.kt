@@ -26,7 +26,6 @@ class DetalleProductoActivity : AppCompatActivity(), ConfirmListener, ListaMarca
 
 
     private val CAMERA_REQUEST_CODE = 0
-    private val PICK_IMAGE = 100;
     private val CODIGO_INTENTO = 1
     private var permisoCamaraConcedido = false
     private  var permisoSolicitadoDesdeBoton: Boolean = false
@@ -47,7 +46,6 @@ class DetalleProductoActivity : AppCompatActivity(), ConfirmListener, ListaMarca
     private lateinit var marcaProducto: TextView
     private lateinit var editarMarcaBoton: Button
     private lateinit var marcasList: List<Marca>
-    private lateinit var imgProducto : ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -191,11 +189,8 @@ class DetalleProductoActivity : AppCompatActivity(), ConfirmListener, ListaMarca
         val estadoDePermiso =
             ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
         if (estadoDePermiso == PackageManager.PERMISSION_GRANTED) {
-            // En caso de que haya dado permisos ponemos la bandera en true
-            // y llamar al método
             permisoCamaraConcedido = true
         } else {
-            // Si no, pedimos permisos. Ahora mira onRequestPermissionsResult
             ActivityCompat.requestPermissions(
                 this, arrayOf(Manifest.permission.CAMERA),
                 CAMERA_REQUEST_CODE
@@ -225,7 +220,6 @@ class DetalleProductoActivity : AppCompatActivity(), ConfirmListener, ListaMarca
                 return
             }
             else -> {
-                // Este else lo dejamos por si sale un permiso que no teníamos controlado.
             }
         }
     }
