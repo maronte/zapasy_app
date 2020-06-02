@@ -1,6 +1,6 @@
 package com.example.Zapasy.interfaces
 
-import com.example.Zapasy.room.Product
+import com.example.Zapasy.Models.Product
 
 interface ProductCardListener {
 

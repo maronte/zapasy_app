@@ -16,7 +16,7 @@ import com.example.Zapasy.adapters.AdapterProductCard
 import com.example.Zapasy.dialogs.ConfirmDialog
 import com.example.Zapasy.interfaces.ConfirmListener
 import com.example.Zapasy.interfaces.ProductCardListener
-import com.example.Zapasy.room.Product
+import com.example.Zapasy.Models.Product
 import com.example.Zapasy.viewmodels.ProductViewModel
 
 class Productos : Fragment(), ProductCardListener,  ConfirmListener{
@@ -40,7 +40,7 @@ class Productos : Fragment(), ProductCardListener,  ConfirmListener{
         return view
     }
     private fun addObserver(){
-        val observer = Observer<List<Product>> {products ->
+        val observer = Observer<List<Product>> { products ->
             if (products != null){
                 productosReycler.adapter = AdapterProductCard(context!!, products, this)
             }

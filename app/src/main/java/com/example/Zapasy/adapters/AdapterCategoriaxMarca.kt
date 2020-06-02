@@ -7,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
-import com.example.Zapasy.DetalleProductoActivity
+import com.example.Zapasy.DetalleEditarMarcaActivity
+import com.example.Zapasy.Models.Marca
 import com.example.Zapasy.R
-import com.example.Zapasy.Models.Product
 
-class AdapterProductxMarca(val context: Context, val productos:List<Product>)
-    :RecyclerView.Adapter<AdapterProductxMarca.ViewHolder>() {
+class AdapterCategoriaxMarca(val context: Context, val marcas:List<Marca>)
+    :RecyclerView.Adapter<AdapterCategoriaxMarca.ViewHolder>() {
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         var nombre: Button
@@ -28,14 +28,14 @@ class AdapterProductxMarca(val context: Context, val productos:List<Product>)
     }
 
     override fun getItemCount(): Int {
-        return productos.size
+        return marcas.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.nombre.text = productos.get(position).name
+        holder.nombre.text = marcas.get(position).nombre
         holder.nombre.setOnClickListener {
-            val intent = Intent(context, DetalleProductoActivity::class.java)
-            intent.putExtra("idProduct", productos[position].id)
+            val intent = Intent(context, DetalleEditarMarcaActivity::class.java)
+            intent.putExtra("idMarc", marcas[position].id as Int)
             context.startActivity(intent)
         }
     }

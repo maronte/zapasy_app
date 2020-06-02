@@ -100,8 +100,8 @@ class MarcaRepository(application: Application) {
         return null
     }
 
-    fun getByCategoria(marca: Marca): LiveData<List<Marca>>{
-        return marcaDao?.getbyCategoria(marca.idCategoria!!) ?: MutableLiveData<List<Marca>>()
+    fun getByCategoria(idCategoria: Int): LiveData<List<Marca>>{
+        return marcaDao?.getbyCategoria(idCategoria) ?: MutableLiveData<List<Marca>>()
     }
 
 }

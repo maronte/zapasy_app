@@ -18,7 +18,7 @@ import com.example.Zapasy.dialogs.ListaMarcasDialog
 import com.example.Zapasy.interfaces.ConfirmListener
 import com.example.Zapasy.interfaces.ListaMarcaListener
 import com.example.Zapasy.room.MarcaRepository
-import com.example.Zapasy.room.Product
+import com.example.Zapasy.Models.Product
 import com.example.Zapasy.room.ProductRepository
 
 class DetalleProductoActivity : AppCompatActivity(), ConfirmListener, ListaMarcaListener {

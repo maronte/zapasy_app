@@ -1,7 +1,6 @@
 package com.example.Zapasy
 
 import android.Manifest
-import android.R.attr
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -19,7 +18,7 @@ import com.example.Zapasy.dialogs.ListaMarcasDialog
 import com.example.Zapasy.interfaces.ConfirmListener
 import com.example.Zapasy.interfaces.ListaMarcaListener
 import com.example.Zapasy.room.MarcaRepository
-import com.example.Zapasy.room.Product
+import com.example.Zapasy.Models.Product
 import com.example.Zapasy.room.ProductRepository
 import com.google.android.material.snackbar.Snackbar
 

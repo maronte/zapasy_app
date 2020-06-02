@@ -4,6 +4,7 @@ import android.app.Application
 import android.os.AsyncTask
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.Zapasy.Models.Product
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 

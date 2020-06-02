@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.Zapasy.R
 import com.example.Zapasy.interfaces.ProductCardListener
-import com.example.Zapasy.room.Product
+import com.example.Zapasy.Models.Product
 
 class AdapterProductCard(val context: Context, val productos:List<Product>, val listener: ProductCardListener)
     :RecyclerView.Adapter<AdapterProductCard.ViewHolder>() {

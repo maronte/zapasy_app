@@ -58,7 +58,7 @@
             android:backgroundTint="@color/primaryLightColor"
             android:layout_weight="0.5"
             android:layout_marginEnd="5dp"
-            android:id="@+id/añadircategoriag"
+            android:id="@+id/añadirproducto"
             />
         <Button
             android:layout_width="wrap_content"
@@ -67,7 +67,7 @@
             android:text="@string/buttomdelete"
             android:layout_gravity="center"
             android:background="@drawable/backgroud_button_rounded"
-            android:id="@+id/eliminarcategoriag"
+            android:id="@+id/eliminarproducto"
             />
     </LinearLayout>
 

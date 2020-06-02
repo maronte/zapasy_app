@@ -1,14 +1,11 @@
 package com.example.Zapasy
 
-import android.app.Activity
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.FrameLayout
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.example.Zapasy.R
-import com.example.Zapasy.room.Product
+import com.example.Zapasy.Models.Product
 import com.example.Zapasy.room.ProductRepository
 import com.google.android.material.snackbar.Snackbar
 import com.google.zxing.Result

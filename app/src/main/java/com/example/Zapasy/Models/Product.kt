@@ -1,4 +1,4 @@
-package com.example.Zapasy.room
+package com.example.Zapasy.Models
 
 import androidx.room.Entity
 import androidx.room.ForeignKey

@@ -2,6 +2,7 @@ package com.example.Zapasy.room
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.example.Zapasy.Models.Product
 
 @Dao
 interface ProductDao {

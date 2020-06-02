@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.Zapasy.Models.Categoria
 import com.example.Zapasy.Models.Marca
+import com.example.Zapasy.Models.Product
 
 @Database(entities = [Product::class, Marca::class, Categoria::class], version = 1, exportSchema = false)
 abstract class ZapasyDatabase: RoomDatabase() {
