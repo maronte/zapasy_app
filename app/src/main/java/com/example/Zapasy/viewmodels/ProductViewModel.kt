@@ -10,7 +10,7 @@ class ProductViewModel(application: Application): AndroidViewModel(application) 
 
     private val repository = ProductRepository(application)
     val products = repository.getAll()
-    lateinit var oneProduct : LiveData<List<Product>>
+    lateinit var productsByMarca: LiveData<List<Product>>
 
     fun saveProduct(product: Product){
         repository.insert(product)
@@ -20,12 +20,12 @@ class ProductViewModel(application: Application): AndroidViewModel(application) 
         repository.delete(product)
     }
 
-    fun getOne(id: Int){
-        oneProduct = repository.getOne(id)
-    }
-
     fun updateProduct(product: Product){
         repository.update(product)
+    }
+
+    fun getByMarca(idMarca: Int){
+        productsByMarca = repository.getByMarca(idMarca)
     }
 
 }

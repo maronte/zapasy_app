@@ -23,7 +23,7 @@ class AdapterCategoriaCard(val context: Context, val categorias:List<Categoria>,
             nombre = itemView.findViewById(R.id.nombreCategoriaCard)
             botonEliminar = itemView.findViewById(R.id.eliminarCard)
             itemView.setOnClickListener{
-                //listener.eliminarCard(categorias.get(adapterPosition))
+                listener.onClickCard(categorias.get(adapterPosition))
             }
         }
     }

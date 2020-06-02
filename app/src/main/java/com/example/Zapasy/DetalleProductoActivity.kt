@@ -1,29 +1,21 @@
 package com.example.Zapasy
 
-import android.content.Intent
-import android.net.Uri
-import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import com.example.Zapasy.adapters.AdapterProductCard
+import android.widget.*
+import com.example.Zapasy.Models.Marca
 import com.example.Zapasy.dialogs.ConfirmDialog
+import com.example.Zapasy.dialogs.ListaMarcasDialog
 import com.example.Zapasy.interfaces.ConfirmListener
+import com.example.Zapasy.interfaces.ListaMarcaListener
+import com.example.Zapasy.room.MarcaRepository
 import com.example.Zapasy.room.Product
-import com.example.Zapasy.room.ProductDao
 import com.example.Zapasy.room.ProductRepository
-import com.example.Zapasy.room.ZapasyDatabase
-import com.example.Zapasy.viewmodels.ProductViewModel
 
-class DetalleProductoActivity : AppCompatActivity(), ConfirmListener {
+class DetalleProductoActivity : AppCompatActivity(), ConfirmListener, ListaMarcaListener {
 
     private lateinit var coordinatorLayout: LinearLayout
     private lateinit var nameProduct: EditText
@@ -37,24 +29,26 @@ class DetalleProductoActivity : AppCompatActivity(), ConfirmListener {
     private lateinit var soldProductMoney: TextView
     private lateinit var damagedProductMoney: TextView
     private lateinit var lostProductMoney: TextView
-    private lateinit var productsViewModel: ProductViewModel
-    private lateinit var productVisualizado: Product
+    private lateinit var productoVisualizado: Product
+    private lateinit var marcaProducto: TextView
+    private lateinit var editarMarcaBoton: Button
+    private lateinit var marcasList: List<Marca>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val idProduct = intent.extras?.get("idProduct")
-        productsViewModel = kotlin.run {
-            ViewModelProviders.of(this).get(ProductViewModel::class.java)
-        }
-        if (idProduct is Int){
-            productsViewModel.getOne(idProduct)
-            Toast.makeText(this,idProduct.toString(),Toast.LENGTH_SHORT).show()
-
-        }
         setContentView(R.layout.activity_detalle_producto)
         enableBackButton()
+        val lista = MarcaRepository(application).getAll2()
+        if (lista != null){
+            marcasList = lista
+        }
         inicializeElements()
-        addObserver()
+        if (idProduct is Int){
+            val p = Product()
+            p.id = idProduct
+            mapearProductoVista(p)
+        }
     }
     override fun onSupportNavigateUp(): Boolean {
         finish()
@@ -72,6 +66,40 @@ class DetalleProductoActivity : AppCompatActivity(), ConfirmListener {
         return true
     }
 
+    fun mapearProductoVista(product: Product){
+        val listaProductos = ProductRepository(application).getOne(product)
+        if (listaProductos != null){
+            productoVisualizado = listaProductos[0]
+            val product = productoVisualizado
+            nameProduct.text = product.name.toEditable()
+            priceProduct.text = product.price.toString().toEditable()
+            barcodeProduct.text = product.barcode.toEditable()
+
+            existingProduct.text = product.existing.toString().toEditable()
+            val em = "En valor: \$" + (product.existing * product.price).toString()
+            existingMoney.text = em.toEditable()
+
+            soldProduct.text = product.sold.toString().toEditable()
+            val sm = "En valor: \$" + (product.sold * product.price).toString()
+            soldProductMoney.text = sm.toEditable()
+
+            lostProduct.text = product.lost.toString().toEditable()
+            val lm = "En valor: \$" + (product.lost * product.price).toString()
+            lostProductMoney.text = lm.toEditable()
+
+            damagedProduct.text = product.damaged.toString().toEditable()
+            val dm = "En valor: \$" + (product.damaged * product.price).toString()
+            damagedProductMoney.text = dm.toEditable()
+
+            marcaProducto.text = product.idMarca.toString()
+            for (marca in marcasList){
+                if (marca.id == product.idMarca){
+                    marcaProducto.text = marca.nombre
+                }
+            }
+        }
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.action_save ->{
@@ -83,9 +111,16 @@ class DetalleProductoActivity : AppCompatActivity(), ConfirmListener {
     }
 
     override fun onPositiveAction() {
-        //productsViewModel.updateProduct2(productVisualizado)
-        ProductRepository(application).updateExisting(productVisualizado)
-        Toast.makeText(this,productVisualizado.id.toString(),Toast.LENGTH_SHORT).show()
+
+        productoVisualizado.name = nameProduct.text.toString()
+        productoVisualizado.price = priceProduct.text.toString().toDouble()
+        productoVisualizado.barcode = barcodeProduct.text.toString()
+        productoVisualizado.existing = existingProduct.text.toString().toInt()
+        productoVisualizado.sold = soldProduct.text.toString().toInt()
+        productoVisualizado.damaged = damagedProduct.text.toString().toInt()
+        productoVisualizado.lost = damagedProduct.text.toString().toInt()
+        ProductRepository(application).update(productoVisualizado)
+
     }
 
     fun inicializeElements(){
@@ -101,36 +136,20 @@ class DetalleProductoActivity : AppCompatActivity(), ConfirmListener {
         soldProductMoney = findViewById(R.id.soldmoney)
         lostProductMoney = findViewById(R.id.lostmoney)
         damagedProductMoney = findViewById(R.id.damagedmoney)
+        marcaProducto = findViewById(R.id.marca_productdetail)
+        editarMarcaBoton = findViewById(R.id.editarMarca)
+        editarMarcaBoton.setOnClickListener {
+            val dialog = ListaMarcasDialog("Lista de marcas", marcasList, this)
+            dialog.show(supportFragmentManager,null)
+        }
     }
     fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
 
-    private fun addObserver(){
-        val observer = Observer<List<Product>> { products ->
-            if (products != null){
-                val product = products.get(0)
-                productVisualizado = product
-                nameProduct.text = product.name.toEditable()
-                priceProduct.text = product.price.toString().toEditable()
-                barcodeProduct.text = product.barcode.toEditable()
-
-                existingProduct.text = product.existing.toString().toEditable()
-                val em = "En valor: \$" + (product.existing * product.price).toString()
-                existingMoney.text = em.toEditable()
-
-                soldProduct.text = product.sold.toString().toEditable()
-                val sm = "En valor: \$" + (product.sold * product.price).toString()
-                soldProductMoney.text = sm.toEditable()
-
-                lostProduct.text = product.lost.toString().toEditable()
-                val lm = "En valor: \$" + (product.lost * product.price).toString()
-                lostProductMoney.text = lm.toEditable()
-
-                damagedProduct.text = product.damaged.toString().toEditable()
-                val dm = "En valor: \$" + (product.damaged * product.price).toString()
-                damagedProductMoney.text = dm.toEditable()
-            }
+    override fun onClickMarca(marca: Int) {
+        if (marcasList != null){
+            marcaProducto.text = marcasList[marca].nombre
+            productoVisualizado.idMarca = marcasList[marca].id
         }
-        productsViewModel.oneProduct.observe(this,observer)
     }
 
 }

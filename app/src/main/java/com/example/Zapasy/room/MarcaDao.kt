@@ -18,4 +18,14 @@ interface MarcaDao {
 
     @Query("SELECT * FROM marca" )
     fun getAll(): LiveData<List<Marca>>
+
+    @Query("SELECT * FROM marca")
+    fun getMarcasForList(): MutableList<Marca>
+
+    @Query (value = "SELECT * FROM marca")
+    fun getAllNoLiveData(): List<Marca>
+
+    @Query(value = "SELECT * FROM marca WHERE id = :id")
+    fun getOne(id: Int): List<Marca>
+
 }

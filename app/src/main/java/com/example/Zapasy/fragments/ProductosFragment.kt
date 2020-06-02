@@ -1,14 +1,11 @@
 package com.example.Zapasy.fragments
 
-import android.app.Application
 import android.content.Intent
-import android.os.AsyncTask
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,7 +18,6 @@ import com.example.Zapasy.interfaces.ConfirmListener
 import com.example.Zapasy.interfaces.ProductCardListener
 import com.example.Zapasy.room.Product
 import com.example.Zapasy.viewmodels.ProductViewModel
-
 
 class Productos : Fragment(), ProductCardListener,  ConfirmListener{
 
@@ -69,6 +65,5 @@ class Productos : Fragment(), ProductCardListener,  ConfirmListener{
         if( !productoABorrar.name.equals("") ) productsViewModel.deleteProduct(productoABorrar)
         productoABorrar.name = ""
     }
-
 
 }

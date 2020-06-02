@@ -49,13 +49,14 @@
     <string name="categoriename">Nombre de la categoría</string>
     <string name="categoriexproduct">Productos que contiene</string>
     <string name="categoriexgroup">Grupos a los que pertenece</string>
-    <string name="group">Grupo</string>
-    <string name="groupname">Nombre del grupo</string>
-    <string name="groupxcategorie">Categorías que contiene</string>
+    <string name="group">Marca</string>
+    <string name="groupname">Nombre de la marca</string>
+    <string name="groupxcategorie">Productos que contiene</string>
+    <string name="añadirMarca">Añadir marca</string>
 
     <!-- Dialogs -->
     <string name="question">¿Pregunta de conformación?</string>
-    <string name="confirm">Aceptar</string>
+    <string name="confirm">Agregar</string>
     <string name="cancel">Cancelar</string>
     <string name="list">Lista de elementos</string>
 

@@ -4,17 +4,18 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.Toast
-import androidx.lifecycle.ViewModelProviders
+import android.widget.*
+import com.example.Zapasy.Models.Marca
 import com.example.Zapasy.room.Product
 import com.example.Zapasy.dialogs.ConfirmDialog
+import com.example.Zapasy.dialogs.ListaMarcasDialog
 import com.example.Zapasy.interfaces.ConfirmListener
-import com.example.Zapasy.viewmodels.ProductViewModel
+import com.example.Zapasy.interfaces.ListaMarcaListener
+import com.example.Zapasy.room.MarcaRepository
+import com.example.Zapasy.room.ProductRepository
 import com.google.android.material.snackbar.Snackbar
 
-class CrearProductoActivity : AppCompatActivity(), ConfirmListener {
+class CrearProductoActivity : AppCompatActivity(), ConfirmListener, ListaMarcaListener {
 
     private lateinit var coordinatorLayout: LinearLayout
     private lateinit var nameProduct: EditText
@@ -24,16 +25,20 @@ class CrearProductoActivity : AppCompatActivity(), ConfirmListener {
     private lateinit var soldProduct: EditText
     private lateinit var damagedProduct: EditText
     private lateinit var lostProduct: EditText
-    private lateinit var productsViewModel: ProductViewModel
+    private lateinit var buttonAñadirMarca: Button
+    private lateinit var marcaProducto: TextView
+    private var productToRegist = Product()
+    private lateinit var marcasList: List<Marca>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_crear_producto)
         enableBackButton()
-        inicializeVariables()
-        productsViewModel = kotlin.run {
-            ViewModelProviders.of(this).get(ProductViewModel::class.java)
+        val lista = MarcaRepository(application).getAll2()
+        if (lista != null){
+            marcasList = lista
         }
+        inicializeVariables()
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -70,12 +75,19 @@ class CrearProductoActivity : AppCompatActivity(), ConfirmListener {
         existingProduct = findViewById(R.id.existinginput)
         soldProduct = findViewById(R.id.soldinput)
         damagedProduct = findViewById(R.id.damagedinput)
+        marcaProducto = findViewById(R.id.marca_product)
         lostProduct = findViewById(R.id.lostinput)
+        buttonAñadirMarca = findViewById(R.id.añadirmarcap)
+        if (marcasList != null){
+            buttonAñadirMarca.setOnClickListener {
+                val dialog = ListaMarcasDialog("Lista de marcas", marcasList, this)
+                dialog.show(supportFragmentManager,null)
+            }
+        }
     }
 
 
-    fun mapingToModel(): Product {
-        var product = Product()
+    fun mapingToModel(product: Product) {
         product.name = nameProduct.text.toString()
         product.price = priceProduct.text.toString().toDouble()
         product.barcode = barcodeProduct.text.toString()
@@ -83,7 +95,6 @@ class CrearProductoActivity : AppCompatActivity(), ConfirmListener {
         if( !soldProduct.text.toString().equals("") ) product.sold = soldProduct.text.toString().toInt()
         if (!lostProduct.text.toString().equals("")) product.lost = lostProduct.text.toString().toInt()
         if (!damagedProduct.text.toString().equals("")) product.damaged = damagedProduct.text.toString().toInt()
-        return product
     }
 
     override fun onPositiveAction() {
@@ -95,11 +106,17 @@ class CrearProductoActivity : AppCompatActivity(), ConfirmListener {
                     "sin precio",Snackbar.LENGTH_LONG).show()
 
         }else{
-            val productToRegist = mapingToModel()
-            productsViewModel.saveProduct(productToRegist)
-            Snackbar.make(coordinatorLayout,"Se creó el producto con éxito",
+            mapingToModel(productToRegist)
+            ProductRepository(application).insert(productToRegist)
+            Snackbar.make(coordinatorLayout,"Has añadido un producto",
                 Snackbar.LENGTH_LONG).show()
         }
     }
 
+    override fun onClickMarca(marca: Int) {
+        if (marcasList != null){
+            marcaProducto.text = marcasList[marca].nombre
+            productToRegist.idMarca = marcasList[marca].id
+        }
+    }
 }

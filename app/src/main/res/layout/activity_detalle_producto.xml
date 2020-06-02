@@ -180,41 +180,21 @@
                 style="@style/editTextFormStyle"
                 android:layout_width="340dp"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:text="@string/marca" />
 
-            <LinearLayout
+            <Button
+                android:id="@+id/editarMarca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/edit"
+                android:layout_gravity="center"
+                android:background="@drawable/backgroud_button_rounded"
+                android:backgroundTint="@color/primaryLightColor"
+                android:layout_marginEnd="5dp"
                 android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:orientation="horizontal"
-                android:weightSum="2"
-                >
-                <FrameLayout
-                    android:layout_weight="0.5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    />
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/edit"
-                    android:layout_gravity="center"
-                    android:background="@drawable/backgroud_button_rounded"
-                    android:backgroundTint="@color/primaryLightColor"
-                    android:layout_weight="0.5"
-                    android:layout_marginEnd="5dp"
-                    />
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
-                    android:text="@string/buttomdelete"
-                    android:layout_gravity="center"
-                    android:background="@drawable/backgroud_button_rounded"
-                    />
-            </LinearLayout>
-
+                android:layout_marginBottom="10dp"
+                android:padding="5dp"
+                />
 
         </LinearLayout>
 

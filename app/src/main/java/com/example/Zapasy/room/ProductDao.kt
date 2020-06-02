@@ -9,7 +9,7 @@ interface ProductDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(product: Product)
 
-    @Update
+    @Update(onConflict = OnConflictStrategy.REPLACE)
     fun update(product: Product)
 
     @Delete
@@ -19,9 +19,15 @@ interface ProductDao {
     fun getAll(): LiveData<List<Product>>
 
     @Query ("SELECT * FROM Product WHERE id = :id")
-    fun getOne(id: Int): LiveData<List<Product>>
+    fun getOne(id: Int): List<Product>
 
     @Query ("UPDATE product SET existing = :existing WHERE id = :id")
     fun updateExisting(id: Int, existing: Int)
+
+    @Query (value = "SELECT * FROM product")
+    fun getAllNoLiveData(): List<Product>
+
+    @Query(value = "SELECT * FROM product WHERE idMarca = :idMarca")
+    fun getByMarca(idMarca: Int): LiveData<List<Product>>
 
 }

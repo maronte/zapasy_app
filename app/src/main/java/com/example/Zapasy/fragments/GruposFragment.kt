@@ -1,5 +1,6 @@
 package com.example.Zapasy.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,9 +12,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.Zapasy.CrearEditarCategoriaActivity
+import com.example.Zapasy.DetalleEditarMarcaActivity
 import com.example.Zapasy.Models.Categoria
 import com.example.Zapasy.Models.Marca
-
 import com.example.Zapasy.R
 import com.example.Zapasy.adapters.AdapterCategoriaCard
 import com.example.Zapasy.adapters.AdapterMarcaCard
@@ -30,6 +32,7 @@ class Categorias : Fragment(), MarcaCardListener, ConfirmListener, CategoriaCard
     private lateinit var categoriasViewModel: CategoríasViewModel
     lateinit var marcasReycler: RecyclerView
     private var marcaABorrar = Marca()
+    private var categoriaABorrar = Categoria()
     private lateinit var spinner: Spinner
     private lateinit var categoriasRecycler: RecyclerView
 
@@ -72,9 +75,17 @@ class Categorias : Fragment(), MarcaCardListener, ConfirmListener, CategoriaCard
         dialog.show(fragmentManager!!,null)
     }
 
+    override fun onClickCard(marca: Marca) {
+        val intent = Intent(context,DetalleEditarMarcaActivity::class.java)
+        intent.putExtra("idMarc", marca.id)
+        startActivity(intent)
+    }
+
     override fun onPositiveAction() {
         if (!marcaABorrar.nombre.equals("")) marcasViewModel.delete(marcaABorrar)
         marcaABorrar.nombre = ""
+        if (!categoriaABorrar.nombre.equals("")) categoriasViewModel.delete(categoriaABorrar)
+        categoriaABorrar.nombre = ""
     }
 
     fun iniciarSpinner(){
@@ -115,8 +126,14 @@ class Categorias : Fragment(), MarcaCardListener, ConfirmListener, CategoriaCard
     }
 
     override fun eliminarCard(categoria: Categoria) {
-        categoriasViewModel.delete(categoria)
-        // TODO: Abri dialogo
+        val dialog = ConfirmDialog("¿Deseas eliminar la marca?","Borrar", "Cancelar",this)
+        dialog.show(fragmentManager!!,null)
+        categoriaABorrar = categoria
     }
 
+    override fun onClickCard(categoria: Categoria) {
+        val intent = Intent(context,CrearEditarCategoriaActivity::class.java)
+        intent.putExtra("idCategoria", categoria.id)
+        startActivity(intent)
+    }
 }

@@ -5,4 +5,5 @@ import com.example.Zapasy.Models.Marca
 
 interface CategoriaCardListener {
     fun eliminarCard(categoria: Categoria)
+    fun onClickCard(categoria: Categoria)
 }

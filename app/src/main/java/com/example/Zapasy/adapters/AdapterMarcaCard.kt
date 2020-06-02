@@ -22,7 +22,7 @@ class AdapterMarcaCard(val context: Context, val marcas:List<Marca>, val listene
             nombre = itemView.findViewById(R.id.nombreMarcaCard)
             botonEliminar = itemView.findViewById(R.id.eliminarCard)
             itemView.setOnClickListener{
-
+                listener.onClickCard(marcas.get(position))
             }
         }
     }

@@ -155,44 +155,22 @@
                 style="@style/editTextFormStyle"
                 android:layout_width="340dp"
                 android:layout_height="wrap_content"
-                android:text="@string/marca"
-                android:textAlignment="center"/>
+                android:text="@string/marca" />
 
-            <LinearLayout
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/añadirMarca"
+                android:layout_gravity="center"
+                android:background="@drawable/backgroud_button_rounded"
+                android:backgroundTint="@color/primaryLightColor"
+                android:layout_weight="0.5"
                 android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:orientation="horizontal"
-                android:weightSum="2"
-                >
-                <FrameLayout
-                    android:layout_weight="0.5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    />
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/buttomadd"
-                    android:layout_gravity="center"
-                    android:background="@drawable/backgroud_button_rounded"
-                    android:backgroundTint="@color/primaryLightColor"
-                    android:layout_weight="0.5"
-                    android:layout_marginEnd="5dp"
-                    android:textColor="@color/primaryTextColor"
-                    android:id="@+id/añadircategoriap"
-                    />
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
-                    android:text="@string/buttomdelete"
-                    android:layout_gravity="center"
-                    android:background="@drawable/backgroud_button_rounded"
-                    android:id="@+id/eliminarcategoriap"
-                    android:textColor="@color/primaryTextColor"
-                    />
-            </LinearLayout>
+                android:textColor="@color/primaryTextColor"
+                android:id="@+id/añadirmarcap"
+                android:layout_marginBottom="10dp"
+                android:padding="5dp" />
 
         </LinearLayout>
 

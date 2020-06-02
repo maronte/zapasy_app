@@ -3,7 +3,7 @@ package com.example.Zapasy
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.viewpager.widget.ViewPager
 import com.example.Zapasy.Models.Categoria
 import com.example.Zapasy.Models.Marca
@@ -12,13 +12,12 @@ import com.example.Zapasy.dialogs.CreateDialog
 import com.example.Zapasy.fragments.Categorias
 import com.example.Zapasy.fragments.Inicio
 import com.example.Zapasy.fragments.Productos
-import com.example.Zapasy.interfaces.ConfirmListener
 import com.example.Zapasy.interfaces.CreateListener
 import com.example.Zapasy.room.CategoriasRepository
 import com.example.Zapasy.room.MarcaRepository
 import com.getbase.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
-import kotlinx.android.synthetic.main.activity_crear_producto.*
 
 class MainActivity : AppCompatActivity(), CreateListener {
 
@@ -27,6 +26,7 @@ class MainActivity : AppCompatActivity(), CreateListener {
     private lateinit var buttonAddProduct: FloatingActionButton
     private lateinit var buttonAddMarca: FloatingActionButton
     private lateinit var buttonAddCategorie: FloatingActionButton
+    private lateinit var coordinatorLayout: CoordinatorLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity(), CreateListener {
         fixElevationTabBar()
         loadTabandViewPager()
         funcionalityFloatingMenu()
+        coordinatorLayout = findViewById(R.id.coordinatorMainActivity)
     }
     fun fixElevationTabBar(){
         val toolbar = getSupportActionBar()
@@ -69,21 +70,12 @@ class MainActivity : AppCompatActivity(), CreateListener {
         buttonAddProduct.setOnClickListener{
             val intent = Intent(this,CrearProductoActivity::class.java)
             startActivity(intent)
-            Toast.makeText(this,"Vas a crear un producto",Toast.LENGTH_SHORT).show()
         }
         buttonAddMarca.setOnClickListener{
-            //val intent = Intent(this,CrearEditarMarcaActivity::class.java)
-            //intent.putExtra("Accion",1)
-            //startActivity(intent)
-            //Toast.makeText(this,"Vas a crear una categoría",Toast.LENGTH_SHORT).show()
             val dialog = CreateDialog("Ingresa el nombre de la marca",CreateDialog.CREATE_MARCA, this)
             dialog.show(supportFragmentManager,null)
         }
         buttonAddCategorie.setOnClickListener{
-            //val intent = Intent(this,CrearEditarCategoriaActivity::class.java)
-            //intent.putExtra("Accion",1)
-            //startActivity(intent)
-            //Toast.makeText(this,"Vas a crear una categoría",Toast.LENGTH_SHORT).show()
             val dialog = CreateDialog("Ingresa el nombre de la categoría", CreateDialog.CREATE_CATEGORIA, this)
             dialog.show(supportFragmentManager,null)
         }
@@ -91,10 +83,12 @@ class MainActivity : AppCompatActivity(), CreateListener {
 
     override fun createMarca(marca: Marca) {
         MarcaRepository(application).insert(marca)
+        Snackbar.make(coordinatorLayout,"Has añadido una marca", Snackbar.LENGTH_LONG).show()
     }
 
     override fun createCategoria(categoria: Categoria) {
         CategoriasRepository(application).insert(categoria)
+        Snackbar.make(coordinatorLayout,"Has añadido una categoría", Snackbar.LENGTH_LONG).show()
     }
 
 }
