@@ -21,8 +21,8 @@ interface ProductDao {
     @Query ("SELECT * FROM Product WHERE id = :id")
     fun getOne(id: Int): List<Product>
 
-    @Query ("UPDATE product SET existing = :existing WHERE id = :id")
-    fun updateExisting(id: Int, existing: Int)
+    @Query ("UPDATE product SET existing = existing+1 WHERE barcode = :barcode")
+    fun updateExisting(barcode: String)
 
     @Query (value = "SELECT * FROM product")
     fun getAllNoLiveData(): List<Product>

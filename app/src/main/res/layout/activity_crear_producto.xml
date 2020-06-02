@@ -170,7 +170,7 @@
                 android:textColor="@color/primaryTextColor"
                 android:id="@+id/añadirmarcap"
                 android:layout_marginBottom="10dp"
-                android:padding="5dp" />
+                android:padding="10dp" />
 
         </LinearLayout>
 

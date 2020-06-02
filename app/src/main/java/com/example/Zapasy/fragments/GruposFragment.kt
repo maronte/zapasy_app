@@ -12,7 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.Zapasy.CrearEditarCategoriaActivity
+import com.example.Zapasy.DetalleEditarCategoriaActivity
 import com.example.Zapasy.DetalleEditarMarcaActivity
 import com.example.Zapasy.Models.Categoria
 import com.example.Zapasy.Models.Marca
@@ -132,8 +132,8 @@ class Categorias : Fragment(), MarcaCardListener, ConfirmListener, CategoriaCard
     }
 
     override fun onClickCard(categoria: Categoria) {
-        val intent = Intent(context,CrearEditarCategoriaActivity::class.java)
-        intent.putExtra("idCategoria", categoria.id)
+        val intent = Intent(context,DetalleEditarCategoriaActivity::class.java)
+        intent.putExtra("idCategori", categoria.id)
         startActivity(intent)
     }
 }

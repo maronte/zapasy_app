@@ -2,7 +2,6 @@ package com.example.Zapasy.room
 
 import android.app.Application
 import android.os.AsyncTask
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.Zapasy.Models.Marca
@@ -99,6 +98,10 @@ class MarcaRepository(application: Application) {
             return lista
         }
         return null
+    }
+
+    fun getByCategoria(marca: Marca): LiveData<List<Marca>>{
+        return marcaDao?.getbyCategoria(marca.idCategoria!!) ?: MutableLiveData<List<Marca>>()
     }
 
 }

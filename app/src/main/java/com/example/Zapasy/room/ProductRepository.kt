@@ -108,7 +108,7 @@ class ProductRepository(application: Application) {
         val myExecutor : Executor = Executors.newSingleThreadExecutor()
         myExecutor.execute {
             if (productDao!= null){
-                productDao.updateExisting(product.id,product.existing)
+                productDao.updateExisting(product.barcode)
             }
         }
     }

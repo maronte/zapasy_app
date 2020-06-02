@@ -1,5 +1,11 @@
 package com.example.Zapasy
 
+/*
+* Proyecto de los integrantes:
+* Trejo Suárez Marco Ronaldo
+* Rodriguez Villalva María del Carmen
+* */
+
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

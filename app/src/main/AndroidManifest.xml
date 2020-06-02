@@ -14,10 +14,10 @@
         <activity android:name=".CapturarCodigoActivity"></activity>
         <activity android:name=".SearchActivity" />
         <activity android:name=".DetalleEditarMarcaActivity" />
-        <activity android:name=".CrearEditarCategoriaActivity" />
+        <activity android:name=".DetalleEditarCategoriaActivity" />
         <activity android:name=".DetalleProductoActivity" />
         <activity android:name=".CrearProductoActivity" />
-        <activity android:name=".EscanearActivity" />
+        <activity android:name=".InventariarActivity" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/SplashTheme">

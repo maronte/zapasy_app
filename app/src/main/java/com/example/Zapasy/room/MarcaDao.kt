@@ -28,4 +28,7 @@ interface MarcaDao {
     @Query(value = "SELECT * FROM marca WHERE id = :id")
     fun getOne(id: Int): List<Marca>
 
+    @Query(value = "SELECT * FROM marca WHERE idCategoria = :idCategoria")
+    fun getbyCategoria(idCategoria: Int): LiveData<List<Marca>>
+
 }

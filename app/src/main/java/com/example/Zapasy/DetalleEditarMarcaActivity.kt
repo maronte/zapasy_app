@@ -1,22 +1,18 @@
 package com.example.Zapasy
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.Zapasy.Models.Marca
-import com.example.Zapasy.adapters.AdapterProductCard
 import com.example.Zapasy.adapters.AdapterProductxMarca
 import com.example.Zapasy.dialogs.ConfirmDialog
 import com.example.Zapasy.interfaces.ConfirmListener
-import com.example.Zapasy.interfaces.ProductCardListener
 import com.example.Zapasy.room.MarcaRepository
 import com.example.Zapasy.room.Product
 import com.example.Zapasy.viewmodels.ProductViewModel
@@ -30,7 +26,7 @@ class DetalleEditarMarcaActivity : AppCompatActivity(), ConfirmListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_crear_editar_grupo)
+        setContentView(R.layout.activity_detalle_editar_marca)
         enableBackButton()
         val id = intent.getIntExtra("idMarc",0)
         //Toast.makeText(this,id.toString(),Toast.LENGTH_SHORT).show()

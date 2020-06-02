@@ -4,35 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.Zapasy.CrearEditarCategoriaActivity"
+    tools:context="com.example.Zapasy.DetalleEditarCategoriaActivity"
     android:orientation="vertical">
 
     <TextView
         style="@style/labelFormStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/categorie" />
+        android:text="@string/group" />
 
     <EditText
-        android:id="@+id/categoryname"
+        android:id="@+id/marcaName"
         style="@style/editTextFormStyle"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
-        android:hint="@string/categoriename"
-        android:autofillHints="@string/categoriename"
+        android:hint="@string/groupname"
+        android:autofillHints="@string/groupname"
         android:inputType="text"/>
 
+
+
     <TextView
         style="@style/labelFormStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/categoriexproduct" />
+        android:text="@string/groupxcategorie" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
         android:layout_width="wrap_content"
-        android:layout_height="60dp" />
+        android:layout_height="60dp"
+        android:id="@+id/recyclerProducts"/>
 
     <LinearLayout
         android:layout_marginTop="10dp"
@@ -55,7 +58,7 @@
             android:backgroundTint="@color/primaryLightColor"
             android:layout_weight="0.5"
             android:layout_marginEnd="5dp"
-            android:id="@+id/añadirproductoc"
+            android:id="@+id/añadircategoriag"
             />
         <Button
             android:layout_width="wrap_content"
@@ -64,54 +67,9 @@
             android:text="@string/buttomdelete"
             android:layout_gravity="center"
             android:background="@drawable/backgroud_button_rounded"
-            android:id="@+id/eliminarproductoc"
+            android:id="@+id/eliminarcategoriag"
             />
     </LinearLayout>
 
-    <TextView
-        style="@style/labelFormStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/categoriexgroup" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp" />
-
-    <LinearLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        >
-        <FrameLayout
-            android:layout_weight="0.5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/buttomadd"
-            android:layout_gravity="center"
-            android:background="@drawable/backgroud_button_rounded"
-            android:backgroundTint="@color/primaryLightColor"
-            android:layout_weight="0.5"
-            android:layout_marginEnd="5dp"
-            android:id="@+id/añadirgrupoc"
-            />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="@string/buttomdelete"
-            android:layout_gravity="center"
-            android:background="@drawable/backgroud_button_rounded"
-            android:id="@+id/eliminarrgrupoc"
-            />
-    </LinearLayout>
 
 </LinearLayout>

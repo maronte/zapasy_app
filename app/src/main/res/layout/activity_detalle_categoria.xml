@@ -4,38 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.Zapasy.CrearEditarCategoriaActivity"
+    tools:context="com.example.Zapasy.DetalleEditarCategoriaActivity"
     android:orientation="vertical">
 
     <TextView
         style="@style/labelFormStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/group" />
+        android:text="@string/categorie" />
 
     <EditText
-        android:id="@+id/marcaName"
+        android:id="@+id/categoryname"
         style="@style/editTextFormStyle"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
-        android:hint="@string/groupname"
-        android:autofillHints="@string/groupname"
+        android:hint="@string/categoriename"
+        android:autofillHints="@string/categoriename"
         android:inputType="text"/>
-
-
 
     <TextView
         style="@style/labelFormStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/groupxcategorie" />
+        android:text="@string/marcasquecontiene" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
-        android:id="@+id/recyclerProducts"/>
+        android:id="@+id/recyclerCategories"/>
 
     <LinearLayout
         android:layout_marginTop="10dp"
@@ -58,7 +56,7 @@
             android:backgroundTint="@color/primaryLightColor"
             android:layout_weight="0.5"
             android:layout_marginEnd="5dp"
-            android:id="@+id/añadircategoriag"
+            android:id="@+id/añadirgrupoc"
             />
         <Button
             android:layout_width="wrap_content"
@@ -67,9 +65,8 @@
             android:text="@string/buttomdelete"
             android:layout_gravity="center"
             android:background="@drawable/backgroud_button_rounded"
-            android:id="@+id/eliminarcategoriag"
+            android:id="@+id/eliminarrgrupoc"
             />
     </LinearLayout>
-
 
 </LinearLayout>

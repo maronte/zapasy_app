@@ -19,4 +19,7 @@ interface CategoriaDao {
     @Query("SELECT * FROM categoria" )
     fun getAll(): LiveData<List<Categoria>>
 
+    @Query(value = "SELECT * FROM categoria WHERE id = :id")
+    fun getOne(id: Int): Categoria
+
 }
