@@ -6,6 +6,8 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 
 @Entity(foreignKeys = [ForeignKey(
+    onDelete = ForeignKey.SET_NULL,
+    onUpdate = ForeignKey.CASCADE,
     entity = Categoria::class,
     parentColumns = ["id"],
     childColumns = ["idCategoria"]

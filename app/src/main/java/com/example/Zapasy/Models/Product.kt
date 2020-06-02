@@ -10,6 +10,8 @@ import com.example.Zapasy.Models.Marca
     indices = [ Index(value = ["barcode"], unique = true), Index(value = ["idMarca"]) ],
     foreignKeys = [
         ForeignKey(
+            onDelete = ForeignKey.SET_NULL,
+            onUpdate = ForeignKey.CASCADE,
             entity = Marca::class,
             parentColumns = ["id"],
             childColumns = ["idMarca"])
